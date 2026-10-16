@@ -1,0 +1,12 @@
+ALTER TABLE public.played_questions ADD COLUMN IF NOT EXISTS user_id uuid DEFAULT auth.uid();
+ALTER TABLE public.played_questions DROP CONSTRAINT IF EXISTS played_questions_question_id_key;
+CREATE UNIQUE INDEX IF NOT EXISTS played_questions_user_question_key ON public.played_questions (user_id, question_id);
+COMMENT ON COLUMN public.played_questions.user_id IS 'Owner of the played record; rows with NULL are legacy shared history (hidden).';
+DROP POLICY IF EXISTS "Public can read played questions" ON public.played_questions;
+DROP POLICY IF EXISTS "Public can write played questions" ON public.played_questions;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.played_questions TO authenticated;
+GRANT ALL ON public.played_questions TO service_role;
+CREATE POLICY "Users read own played" ON public.played_questions FOR SELECT TO authenticated USING (user_id = auth.uid());
+CREATE POLICY "Users insert own played" ON public.played_questions FOR INSERT TO authenticated WITH CHECK (user_id = auth.uid());
+CREATE POLICY "Users update own played" ON public.played_questions FOR UPDATE TO authenticated USING (user_id = auth.uid()) WITH CHECK (user_id = auth.uid());
+CREATE POLICY "Users delete own played" ON public.played_questions FOR DELETE TO authenticated USING (user_id = auth.uid());

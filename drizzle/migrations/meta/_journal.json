@@ -1,0 +1,69 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1790101987715,
+      "tag": "0000_habwa_core_tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790102010187,
+      "tag": "0001_habwa_game_sessions",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790102029197,
+      "tag": "0002_habwa_qr_and_media_columns",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790102050199,
+      "tag": "0003_habwa_media_storage_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790102098798,
+      "tag": "0004_habwa_admin_settings",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790266178782,
+      "tag": "0005_habwa_full_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1790266213058,
+      "tag": "0006_habwa_media_storage_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1790798681814,
+      "tag": "0007_per_user_played_questions",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1790799023950,
+      "tag": "0008_backup_played_questions",
+      "breakpoints": true
+    }
+  ]
+}
