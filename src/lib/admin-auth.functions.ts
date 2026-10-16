@@ -1,13 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 
 async function readStoredPin() {
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data } = await supabaseAdmin
-    .from("admin_settings")
-    .select("pin")
-    .eq("id", true)
-    .maybeSingle();
-  return data?.pin ?? process.env["ADMIN_SECRET_PIN"] ?? "1234";
+  // Keep the emergency/admin access code independent from old game data.
+  // The deployed environment value wins; 1234 is the intentional default.
+  return process.env["ADMIN_SECRET_PIN"] ?? "1234";
 }
 
 export const verifyAdminPin = createServerFn({ method: "POST" })
