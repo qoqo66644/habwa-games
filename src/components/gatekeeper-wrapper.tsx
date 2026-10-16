@@ -9,7 +9,7 @@ const ADMIN_ACTIVATED_KEY = "habwa-admin-activated";
 const ACTIVE_CODE_KEY = "habwa-active-code";
 
 // Pages that don't require a signed-in account
-const PUBLIC_PATHS = ["/login", "/admin-login"];
+const PUBLIC_PATHS = ["/login", "/admin-login", "/admin"];
 const ADMIN_PIN_SESSION = "habwa-admin-unlocked";
 
 function isAdminUnlocked() {

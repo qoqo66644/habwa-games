@@ -4,11 +4,10 @@ import { createServerFn } from "@tanstack/react-start";
 const ADMIN_PLAYER_ID = "00000000-0000-0000-0000-00000000ad01";
 
 async function expectedToken() {
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data } = await supabaseAdmin.from("admin_settings").select("pin").eq("id", true).maybeSingle();
-  const pin = data?.pin ?? process.env["ADMIN_SECRET_PIN"] ?? "1234";
-  const secret = process.env["SUPABASE_SERVICE_ROLE_KEY"] ?? "";
-  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`habwa-admin:${pin}:${secret}`));
+  // Login must remain available even when Supabase's server-only key is not configured.
+  // The admin PIN itself is already server-side, so derive the session token from it.
+  const pin = process.env["ADMIN_SECRET_PIN"] ?? "1234";
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`habwa-admin:${pin}`));
   return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
